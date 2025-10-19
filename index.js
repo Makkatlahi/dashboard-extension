@@ -57,6 +57,34 @@ navigator.geolocation.getCurrentPosition((pos) => {
 const renderWeather = (data) => {
   console.log(data.weather[0].icon);
   const weatherEl = document.getElementById("weather");
+  const temperature = Math.ceil(data.main.temp);
   weatherEl.innerHTML = `
-                <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png"/>`;
+    <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png"/>
+    <p>${temperature}º</p>
+    <p>${data.name}</p>            
+  `;
 };
+
+/*
+
+navigator.geolocation.getCurrentPosition(position => {
+    fetch(`https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=imperial`)
+        .then(res => {
+            if (!res.ok) {
+                throw Error("Weather data not available")
+            }
+            return res.json()
+        })
+        .then(data => {
+            console.log(data)
+            const iconUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
+            document.getElementById("weather").innerHTML = `
+                <img src=${iconUrl} />
+                <p>${Math.round(data.main.temp)}º</p>
+                <p>${data.name}</p>
+            `
+        })
+        .catch(err => console.error(err))
+});
+
+*/
