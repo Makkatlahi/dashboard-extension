@@ -48,5 +48,15 @@ navigator.geolocation.getCurrentPosition((pos) => {
     `https://api.openweathermap.org/data/2.5/weather?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&units=imperial&appid=e19d26fa0f9ab22b85ddf6d82192cf53`
   )
     .then((res) => res.json())
-    .then((position) => console.log(position));
+    .then((position) => {
+      console.log(position);
+      renderWeather(position);
+    });
 });
+
+const renderWeather = (data) => {
+  console.log(data.weather[0].icon);
+  const weatherEl = document.getElementById("weather");
+  weatherEl.innerHTML = `
+                <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png"/>`;
+};
