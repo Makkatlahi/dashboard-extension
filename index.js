@@ -60,8 +60,8 @@ const renderWeather = (data) => {
   const temperature = Math.ceil(data.main.temp);
   weatherEl.innerHTML = `
     <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png"/>
-    <p>${temperature}º</p>
-    <p>${data.name}</p>            
+    <p class="weather-temp">${temperature}º</p>
+    <p class="weather-city">${data.name}</p>             
   `;
 };
 
